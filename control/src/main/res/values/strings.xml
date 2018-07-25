@@ -1,0 +1,14 @@
+<resources>
+
+
+    <string name="title_activity_venda">Venda</string>
+    <string name="estoque">Estoque</string>
+    <string name="venda">Venda</string>
+    <string name="caixa">Caixa</string>
+    <string name="notas">Notas</string>
+    <string name="title_activity_finalizar_venda">FinalizarVendaActivity</string>
+    <string name="title_activity_listar_vendas">Vendas</string>
+    <string name="title_activity_detalhes_venda">Detalhes</string>
+    <string name="title_activity_notas">Notas</string>
+    <string name="title_activity_receber_nota">Receber</string>
+</resources>
