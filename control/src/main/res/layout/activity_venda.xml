@@ -75,6 +75,13 @@
         android:text="Adicionar Produto"
         />
     <Button
+        android:id="@+id/bt_adicionar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="Adicionar"
+        />
+    <Button
         android:id="@+id/bt_fechar_venda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

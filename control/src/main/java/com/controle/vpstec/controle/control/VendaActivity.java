@@ -44,10 +44,17 @@ public class VendaActivity extends AppCompatActivity {
         final TextView tvnumvenda = (TextView)findViewById(R.id.tv_venda_num);
         totaltv = (TextView) findViewById(R.id.total_valor);
         tvnumvenda.setText(String.valueOf(numero(getBaseContext())));
-        //Atualizar(Integer.parseInt(tvnumvenda.getText().toString()));
         totaltv.setText(String.valueOf(total));
         Button adicionar = (Button) findViewById(R.id.bt_adicionar_prod);
         Button fechar = (Button)findViewById(R.id.bt_fechar_venda);
+        Button adicionarnew = (Button)findViewById(R.id.bt_adicionar);
+        adicionarnew.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getBaseContext(),ProdutosVenda.class);
+                startActivity(intent);
+            }
+        });
         adicionar.setOnClickListener( new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -62,8 +69,6 @@ public class VendaActivity extends AppCompatActivity {
                         cursor.getString(cursor.getColumnIndexOrThrow(ControleContract.ProdutoEntry.DESCRICAO)),
                         valor);
                 Atualizar(Integer.parseInt(tvnumvenda.getText().toString()));
-//                total+=valor;
-//                totaltv.setText(String.valueOf(total));
                 Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
             }
         });
