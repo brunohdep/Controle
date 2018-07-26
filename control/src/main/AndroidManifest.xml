@@ -203,8 +203,7 @@
         </activity>
         <activity
             android:name=".ReceberNotaActivity"
-            android:label="@string/title_activity_receber_nota"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="Receber">
             <intent-filter android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 

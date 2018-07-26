@@ -16,6 +16,7 @@ public class BancoController {
     public BancoController(Context context){
         banco = new ControleDbHelper(context);
     }
+    //Insere um produto
     public String inserirProduto(Produto produto){
         ContentValues valores;
         long resultado =-1;
@@ -37,6 +38,7 @@ public class BancoController {
             return "Inseriu";
         }
     }
+    //Insere um produto na venda
     public String inserirProdutoVenda(int numerovenda,int codprod,int quantidade,String descricao,
                                       double preco){
         ContentValues valores;
@@ -57,6 +59,7 @@ public class BancoController {
         }
 
     }
+    //Salva a Venda Finalizada
     public String inserirFinalizarVenda(String data,int numvenda,String clnome,int status,double desconto, double valor){
         ContentValues valores;
         long resultado = -1;
@@ -78,6 +81,7 @@ public class BancoController {
         }
     }
 
+    //Lista os produtos
     public Cursor listarProdutos(){
         Cursor cursor;
         String[] campos = {
@@ -95,6 +99,7 @@ public class BancoController {
         db.close();
         return cursor;
     }
+    //Lista as vendas finalizadas
     public Cursor listarVendas(){
         Cursor cursor;
         String[] campos = {
@@ -114,6 +119,7 @@ public class BancoController {
         db.close();
         return cursor;
     }
+    //Lista as vendas finalizadas que não foram pagas
     public Cursor listarVendasPorStatus(){
         Cursor cursor;
         String[] campos = {
@@ -134,6 +140,7 @@ public class BancoController {
         db.close();
         return cursor;
     }
+    //Busca a venda finalizada pelo numero da venda
     public Cursor listarVendaPorNumerodaVenda(int numvenda){
         Cursor cursor;
         String[] campos = {
