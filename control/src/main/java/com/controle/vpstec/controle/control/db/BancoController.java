@@ -264,6 +264,13 @@ public class BancoController {
         db.close();
     }
 
+    public void deletarRegistrodeVenda(int id){
+        String where = ControleContract.VendaEntry.NUMEROVENDA + "=" + id;
+        db = banco.getReadableDatabase();
+        db.delete(ControleContract.VendaEntry.TABLE_NAME,where,null);
+        db.close();
+    }
+
     //FimVenda
 
     public int contarVendas(){

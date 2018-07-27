@@ -82,6 +82,8 @@ public class FinalizarVendaActivity extends AppCompatActivity {
                         Double.parseDouble(desconto.getText().toString()),
                         valor);
                 Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(FinalizarVendaActivity.this,MainActivity.class);
+                startActivity(intent);
             }
         });
 

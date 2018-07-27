@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void fazerVenda(View view){
         Intent intent = new Intent(getBaseContext(),VendaActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("venda",String.valueOf(0));
+        intent.putExtras(bundle);
         startActivity(intent);
     }
     public void mostrarVendas(View view){

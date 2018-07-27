@@ -36,14 +36,29 @@ public class VendaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_venda);
+        //Autocomplete
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, NomesProdutos(getBaseContext()));
         final AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.tv_produto);
         textView.setAdapter(adapter);
+        //fim autocomplete
+
         final EditText qtdtv = (EditText) findViewById(R.id.tv_quantidade_num);
         final TextView tvnumvenda = (TextView)findViewById(R.id.tv_venda_num);
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        int numeroVenda = Integer.valueOf(bundle.getString("venda"));
+        BancoController banco = new BancoController(getBaseContext());
+        if(numeroVenda==0){
+            tvnumvenda.setText(String.valueOf(numero(getBaseContext())));
+            System.out.println("NUMERO :" + numero(getBaseContext()));
+            banco.deletarRegistrodeVenda(numero(getBaseContext()));
+            Atualizar(numero(getBaseContext()));
+        }else{
+            Atualizar(numeroVenda);
+            tvnumvenda.setText(String.valueOf(numeroVenda));
+        }
         totaltv = (TextView) findViewById(R.id.total_valor);
-        tvnumvenda.setText(String.valueOf(numero(getBaseContext())));
         totaltv.setText(String.valueOf(total));
         Button adicionar = (Button) findViewById(R.id.bt_adicionar_prod);
         Button fechar = (Button)findViewById(R.id.bt_fechar_venda);
@@ -93,43 +108,44 @@ public class VendaActivity extends AppCompatActivity {
             ListView listVenda = (ListView) findViewById(R.id.listview_venda);
             BancoController crud = new BancoController(getBaseContext());
             final Cursor cursor = crud.buscarVendas(idvenda);
-        String[] nomeCampos = new String[]{
-                ControleContract.VendaEntry._ID,
-                ControleContract.VendaEntry.CODPROD,
-                ControleContract.VendaEntry.QUANTIDADE_VENDA,
-                ControleContract.VendaEntry.DESCRICAO,
-                ControleContract.VendaEntry.PRECO};
-        int[] idViews = new int[] {
-                R.id.v_id,
-                R.id.v_codigo_num,
-                R.id.v_quantidade_num,
-                R.id.v_descricao_nome,
-                R.id.v_valor_num};
-        SimpleCursorAdapter adaptadore = new SimpleCursorAdapter(getBaseContext(),
-                R.layout.item_venda,cursor,nomeCampos,idViews,0);
-        listVenda.setAdapter(adaptadore);
-        if(cursor != null){
-            cursor.moveToFirst();
-        }
-        System.out.println("Total inicial" + total);
-        System.out.println("ID"+cursor.getString(cursor.getColumnIndexOrThrow("_id")));
-        total += Double.parseDouble(cursor.getString(cursor.getColumnIndexOrThrow("preco")));
-        System.out.println("Atual1 : " + total);
-        while(cursor.moveToNext()){
-            double preco = 0.00;
-            preco = Double.parseDouble(cursor.getString(cursor.getColumnIndexOrThrow("preco")));
-            System.out.println("Preco:" + preco);
-            if(preco!= 0) {
-                System.out.println("ID"+cursor.getString(cursor.getColumnIndexOrThrow("_id")));
-                total+=preco;
-                System.out.println("Atual : " + total);
-            }
-            else{
-                break;
-            }
-        }
+            if(cursor.getCount()!=0){
 
-        totaltv.setText(String.valueOf(total));
+                String[] nomeCampos = new String[]{
+                        ControleContract.VendaEntry._ID,
+                        ControleContract.VendaEntry.CODPROD,
+                        ControleContract.VendaEntry.QUANTIDADE_VENDA,
+                        ControleContract.VendaEntry.DESCRICAO,
+                        ControleContract.VendaEntry.PRECO};
+                int[] idViews = new int[]{
+                        R.id.v_id,
+                        R.id.v_codigo_num,
+                        R.id.v_quantidade_num,
+                        R.id.v_descricao_nome,
+                        R.id.v_valor_num};
+                SimpleCursorAdapter adaptadore = new SimpleCursorAdapter(getBaseContext(),
+                        R.layout.item_venda, cursor, nomeCampos, idViews, 0);
+                listVenda.setAdapter(adaptadore);
+                if (cursor != null) {
+                    cursor.moveToFirst();
+                }
+                System.out.println("Total inicial" + total);
+                System.out.println("ID" + cursor.getString(cursor.getColumnIndexOrThrow("_id")));
+                total += Double.parseDouble(cursor.getString(cursor.getColumnIndexOrThrow("preco")));
+                System.out.println("Atual1 : " + total);
+                while (cursor.moveToNext()) {
+                    double preco = 0.00;
+                    preco = Double.parseDouble(cursor.getString(cursor.getColumnIndexOrThrow("preco")));
+                    System.out.println("Preco:" + preco);
+                    if (preco != 0) {
+                        System.out.println("ID" + cursor.getString(cursor.getColumnIndexOrThrow("_id")));
+                        total += preco;
+                        System.out.println("Atual : " + total);
+                    } else {
+                        break;
+                    }
+                }
+
+                //totaltv.setText(String.valueOf(total));
 
 //        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 //            @Override
@@ -143,6 +159,7 @@ public class VendaActivity extends AppCompatActivity {
 //                finish();
 //            }
 //        });
+            }
     }
         public ProdutoAdapter produtos(String descricao,Context context, int quantidade){
         BancoController crud = new BancoController(context);
