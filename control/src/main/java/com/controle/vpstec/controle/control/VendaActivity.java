@@ -61,6 +61,19 @@ public class VendaActivity extends AppCompatActivity {
         totaltv = (TextView) findViewById(R.id.total_valor);
         totaltv.setText(String.valueOf(total));
 //        Button adicionar = (Button) findViewById(R.id.bt_adicionar_prod);
+        Button cancelar = (Button)findViewById(R.id.bt_cancelar_venda);
+        cancelar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                BancoController bd = new BancoController(getBaseContext());
+                bd.deletarRegistrodeVenda(numero(getBaseContext()));
+                Intent intent = new Intent(getBaseContext(), VendaActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("venda",String.valueOf(0));
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
         Button fechar = (Button)findViewById(R.id.bt_fechar_venda);
         Button adicionarnew = (Button)findViewById(R.id.bt_adicionar);
         adicionarnew.setOnClickListener(new View.OnClickListener(){
@@ -70,6 +83,7 @@ public class VendaActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 //        adicionar.setOnClickListener( new View.OnClickListener(){
 //            @Override
 //            public void onClick(View v){

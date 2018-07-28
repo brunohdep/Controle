@@ -85,6 +85,13 @@
         android:text="Adicionar Produto"
         />
     <Button
+        android:id="@+id/bt_cancelar_venda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="Cancelar Venda"
+        />
+    <Button
         android:id="@+id/bt_fechar_venda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

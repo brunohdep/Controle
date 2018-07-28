@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -44,6 +45,17 @@ public class FinalizarVendaActivity extends AppCompatActivity {
         nome = (EditText)findViewById(R.id.cliente_nome);
         desconto = (EditText)findViewById(R.id.valor_desconto);
         status = (Switch)findViewById(R.id.status);
+        desconto.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+                    desconto.setText("");
+                }
+                return false;
+            }
+        });
         Calendar currenttime = Calendar.getInstance();
 //        System.out.println("Data/Hora atual: "+currenttime.getTime());
 //        System.out.println("Ano: "+currenttime.get(Calendar.YEAR));

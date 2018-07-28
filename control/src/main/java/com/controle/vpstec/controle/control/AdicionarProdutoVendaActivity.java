@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +34,17 @@ public class AdicionarProdutoVendaActivity extends AppCompatActivity {
         descricao = (TextView)findViewById(R.id.tv_adicionar_descricao);
         valor = (TextView)findViewById(R.id.tv_adicionar_preco);
         quantidade = (EditText)findViewById(R.id.ed_adicionar_qtd);
+        quantidade.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+                    quantidade.setText("");
+                }
+                return false;
+            }
+        });
         adicionar = (Button)findViewById(R.id.bt_adicionar_botao);
         //buscando no banco de dados
         cursor = crud.carregarDadoById(Integer.parseInt(codigo));
