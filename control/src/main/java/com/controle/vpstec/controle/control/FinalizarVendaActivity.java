@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.controle.vpstec.controle.control.db.BancoController;
 
 import java.sql.SQLOutput;
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -43,8 +44,22 @@ public class FinalizarVendaActivity extends AppCompatActivity {
         nome = (EditText)findViewById(R.id.cliente_nome);
         desconto = (EditText)findViewById(R.id.valor_desconto);
         status = (Switch)findViewById(R.id.status);
-        Date currenttime = Calendar.getInstance().getTime();
-        data = currenttime.toString();
+        Calendar currenttime = Calendar.getInstance();
+//        System.out.println("Data/Hora atual: "+currenttime.getTime());
+//        System.out.println("Ano: "+currenttime.get(Calendar.YEAR));
+//        System.out.println("Mês: "+currenttime.get(Calendar.MONTH));
+//        System.out.println("Dia do Mês: "+currenttime.get(Calendar.DAY_OF_MONTH));
+        Date date = currenttime.getTime();
+//        System.out.println("DATAS******************************************");
+        DateFormat formataData = DateFormat.getDateInstance();
+//        System.out.println("Data atual com formatação: "+ formataData.format(date));
+//        DateFormat hora = DateFormat.getTimeInstance();
+//        System.out.println("Hora formatada: "+hora.format(date));
+//        DateFormat dtHora = DateFormat.getDateTimeInstance();
+//        System.out.println(dtHora.format(date));
+
+
+        data = formataData.format(date).toString();
 
 
 

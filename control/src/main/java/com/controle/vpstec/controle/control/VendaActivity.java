@@ -37,13 +37,13 @@ public class VendaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_venda);
         //Autocomplete
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, NomesProdutos(getBaseContext()));
-        final AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.tv_produto);
-        textView.setAdapter(adapter);
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+//                android.R.layout.simple_dropdown_item_1line, NomesProdutos(getBaseContext()));
+//        final AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.tv_produto);
+//        textView.setAdapter(adapter);
         //fim autocomplete
 
-        final EditText qtdtv = (EditText) findViewById(R.id.tv_quantidade_num);
+//        final EditText qtdtv = (EditText) findViewById(R.id.tv_quantidade_num);
         final TextView tvnumvenda = (TextView)findViewById(R.id.tv_venda_num);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -60,7 +60,7 @@ public class VendaActivity extends AppCompatActivity {
         }
         totaltv = (TextView) findViewById(R.id.total_valor);
         totaltv.setText(String.valueOf(total));
-        Button adicionar = (Button) findViewById(R.id.bt_adicionar_prod);
+//        Button adicionar = (Button) findViewById(R.id.bt_adicionar_prod);
         Button fechar = (Button)findViewById(R.id.bt_fechar_venda);
         Button adicionarnew = (Button)findViewById(R.id.bt_adicionar);
         adicionarnew.setOnClickListener(new View.OnClickListener(){
@@ -70,23 +70,23 @@ public class VendaActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        adicionar.setOnClickListener( new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                totaltv.setText(String.valueOf(total));
-                //insere na venda
-                BancoController inserir = new BancoController(getBaseContext());
-                Cursor cursor = inserir.carregarDadoPorNome(textView.getText().toString());
-                double valor = Integer.parseInt(qtdtv.getText().toString())*cursor.getDouble(cursor.getColumnIndexOrThrow(ControleContract.ProdutoEntry.VALOR));
-                String result = inserir.inserirProdutoVenda(Integer.parseInt(tvnumvenda.getText().toString()),
-                        cursor.getInt(cursor.getColumnIndexOrThrow(ControleContract.ProdutoEntry.CODIGO)),
-                        Integer.parseInt(qtdtv.getText().toString()),
-                        cursor.getString(cursor.getColumnIndexOrThrow(ControleContract.ProdutoEntry.DESCRICAO)),
-                        valor);
-                Atualizar(Integer.parseInt(tvnumvenda.getText().toString()));
-                Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
-            }
-        });
+//        adicionar.setOnClickListener( new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v){
+//                totaltv.setText(String.valueOf(total));
+//                //insere na venda
+//                BancoController inserir = new BancoController(getBaseContext());
+//                Cursor cursor = inserir.carregarDadoPorNome(textView.getText().toString());
+//                double valor = Integer.parseInt(qtdtv.getText().toString())*cursor.getDouble(cursor.getColumnIndexOrThrow(ControleContract.ProdutoEntry.VALOR));
+//                String result = inserir.inserirProdutoVenda(Integer.parseInt(tvnumvenda.getText().toString()),
+//                        cursor.getInt(cursor.getColumnIndexOrThrow(ControleContract.ProdutoEntry.CODIGO)),
+//                        Integer.parseInt(qtdtv.getText().toString()),
+//                        cursor.getString(cursor.getColumnIndexOrThrow(ControleContract.ProdutoEntry.DESCRICAO)),
+//                        valor);
+//                Atualizar(Integer.parseInt(tvnumvenda.getText().toString()));
+//                Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
+//            }
+//        });
         fechar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

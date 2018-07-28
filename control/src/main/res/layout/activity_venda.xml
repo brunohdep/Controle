@@ -15,11 +15,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary"
+        android:layout_weight="0.01">
         <TextView
             android:id="@+id/tv_venda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:text="Venda:" />
         <TextView
             android:id="@+id/tv_venda_num"
@@ -27,25 +30,25 @@
             android:layout_height="wrap_content"
             android:text="" />
 
-        <TextView
-            android:id="@+id/tv_quantidade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="  Quantidade:" />
+        <!--<TextView-->
+            <!--android:id="@+id/tv_quantidade"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="  Quantidade:" />-->
 
-        <EditText
-            android:id="@+id/tv_quantidade_num"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:inputType="number" />
+        <!--<EditText-->
+            <!--android:id="@+id/tv_quantidade_num"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text=""-->
+            <!--android:inputType="number" />-->
 
     </LinearLayout>
 
-    <AutoCompleteTextView
-        android:id="@+id/tv_produto"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+    <!--<AutoCompleteTextView-->
+        <!--android:id="@+id/tv_produto"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,19 +70,19 @@
     </LinearLayout>
 
 
-    <Button
-        android:id="@+id/bt_adicionar_prod"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:text="Adicionar Produto"
-        />
+    <!--<Button-->
+        <!--android:id="@+id/bt_adicionar_prod"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="0"-->
+        <!--android:text="Adicionar Produto"-->
+        <!--/>-->
     <Button
         android:id="@+id/bt_adicionar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:text="Adicionar"
+        android:text="Adicionar Produto"
         />
     <Button
         android:id="@+id/bt_fechar_venda"
