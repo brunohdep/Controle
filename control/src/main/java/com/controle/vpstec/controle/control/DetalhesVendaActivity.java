@@ -1,8 +1,12 @@
 package com.controle.vpstec.controle.control;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -18,7 +22,7 @@ public class DetalhesVendaActivity extends AppCompatActivity {
         int numerovenda = Integer.parseInt(this.getIntent().getStringExtra("numerovenda"));
         ListView listavenda = (ListView)findViewById(R.id.listview_detalhes_venda);
         BancoController crud = new BancoController(getBaseContext());
-        Cursor cursor = crud.buscarVendas(numerovenda);
+        final Cursor cursor = crud.buscarVendas(numerovenda);
         do{
             System.out.println(cursor.getString(cursor.getColumnIndexOrThrow("descricao")));
         }while(cursor.moveToNext());
@@ -38,6 +42,19 @@ public class DetalhesVendaActivity extends AppCompatActivity {
         SimpleCursorAdapter adaptadore = new SimpleCursorAdapter(getBaseContext(),
                 R.layout.item_venda,cursor,nomeCampos,idViews,0);
         listavenda.setAdapter(adaptadore);
+        listavenda.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,int position,long id){
+                String numerovenda;
+                cursor.moveToPosition(position);
+                numerovenda = cursor.getString(cursor.getColumnIndexOrThrow(ControleContract.FechaVendaEntry.NUMEROVENDA));
+                Intent intent = new Intent(DetalhesVendaActivity.this,AlterarVendaActivity.class);
+                intent.putExtra("numerovenda",numerovenda);
+                intent.putExtra("id",cursor.getInt(cursor.getColumnIndexOrThrow("_id")));
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
 }
