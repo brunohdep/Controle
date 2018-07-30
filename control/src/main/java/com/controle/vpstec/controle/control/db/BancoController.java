@@ -310,4 +310,24 @@ public class BancoController {
         db.close();
         return cursor;
     }
+    public Cursor buscarVendasPorid(int id){
+        Cursor cursor;
+        String[] campos = {
+                ControleContract.VendaEntry._ID,
+                ControleContract.VendaEntry.CODPROD,
+                ControleContract.VendaEntry.QUANTIDADE_VENDA,
+                ControleContract.VendaEntry.DESCRICAO,
+                ControleContract.VendaEntry.PRECO};
+        String where = ControleContract.VendaEntry._ID + "=" + id;
+        db=banco.getReadableDatabase();
+        cursor = db.query(ControleContract.VendaEntry.TABLE_NAME,campos,where,null,null,null,null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        db.close();
+        return cursor;
+    }
+    public boolean verificarEstoque(int quantidade){
+
+    }
 }

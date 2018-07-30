@@ -47,10 +47,9 @@ public class DetalhesVendaActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view,int position,long id){
                 String numerovenda;
                 cursor.moveToPosition(position);
-                numerovenda = cursor.getString(cursor.getColumnIndexOrThrow(ControleContract.FechaVendaEntry.NUMEROVENDA));
+//                numerovenda = cursor.getString(cursor.getColumnIndexOrThrow(ControleContract.FechaVendaEntry.NUMEROVENDA));
                 Intent intent = new Intent(DetalhesVendaActivity.this,AlterarVendaActivity.class);
-                intent.putExtra("numerovenda",numerovenda);
-                intent.putExtra("id",cursor.getInt(cursor.getColumnIndexOrThrow("_id")));
+                intent.putExtra("id",cursor.getString(cursor.getColumnIndexOrThrow("_id")));
                 startActivity(intent);
                 finish();
             }
