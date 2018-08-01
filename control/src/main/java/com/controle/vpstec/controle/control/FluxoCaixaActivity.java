@@ -32,7 +32,7 @@ public class FluxoCaixaActivity extends AppCompatActivity {
     public void fluxo() {
         BancoController crud = new BancoController(getBaseContext());
         //Busca todas as vendas
-        Cursor vendas = crud.listarVendas();
+        Cursor vendas = crud.listarVendasNaoCanceladas();
 
         do {
             //Busca os produtos da venda

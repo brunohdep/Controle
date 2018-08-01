@@ -131,7 +131,7 @@ public class BancoController {
                 ControleContract.FechaVendaEntry.STATUS,
                 ControleContract.FechaVendaEntry.DESCONTO,
                 ControleContract.FechaVendaEntry.VALOR};
-        String where = ControleContract.FechaVendaEntry.STATUS + "=" + 0;
+        String where = ControleContract.FechaVendaEntry.STATUS + " = " + 0 + " and " + ControleContract.FechaVendaEntry.CANCELADA + " = " + 0 ;
         db = banco.getReadableDatabase();
         cursor = db.query(ControleContract.FechaVendaEntry.TABLE_NAME,campos,where,null,null,null,null,null);
         if(cursor!=null){
@@ -141,6 +141,37 @@ public class BancoController {
         db.close();
         return cursor;
     }
+    public Cursor listarVendasNaoCanceladas(){
+        Cursor cursor;
+        String[] campos = {
+                ControleContract.FechaVendaEntry._ID,
+                ControleContract.FechaVendaEntry.DATA,
+                ControleContract.FechaVendaEntry.NUMEROVENDA,
+                ControleContract.FechaVendaEntry.CLIENTE_NOME,
+                ControleContract.FechaVendaEntry.STATUS,
+                ControleContract.FechaVendaEntry.DESCONTO,
+                ControleContract.FechaVendaEntry.VALOR};
+        String where = ControleContract.FechaVendaEntry.STATUS + " = " + 1 + " and " + ControleContract.FechaVendaEntry.CANCELADA + " = " + 0 ;
+        db = banco.getReadableDatabase();
+        cursor = db.query(ControleContract.FechaVendaEntry.TABLE_NAME,campos,where,null,null,null,null,null);
+        return cursor;
+    }
+    public Cursor listarVendasCanceladas(){
+        Cursor cursor;
+        String[] campos = {
+                ControleContract.FechaVendaEntry._ID,
+                ControleContract.FechaVendaEntry.DATA,
+                ControleContract.FechaVendaEntry.NUMEROVENDA,
+                ControleContract.FechaVendaEntry.CLIENTE_NOME,
+                ControleContract.FechaVendaEntry.STATUS,
+                ControleContract.FechaVendaEntry.DESCONTO,
+                ControleContract.FechaVendaEntry.VALOR};
+        String where = ControleContract.FechaVendaEntry.CANCELADA + " = " + 1 ;
+        db = banco.getReadableDatabase();
+        cursor = db.query(ControleContract.FechaVendaEntry.TABLE_NAME,campos,where,null,null,null,null,null);
+        return cursor;
+    }
+
     //Busca a venda finalizada pelo numero da venda
     public Cursor listarVendaPorNumerodaVenda(int numvenda){
         Cursor cursor;
@@ -254,6 +285,17 @@ public class BancoController {
         where = ControleContract.FechaVendaEntry.NUMEROVENDA + "=" + numvenda;
         valores = new ContentValues();
         valores.put(ControleContract.FechaVendaEntry.VALOR,valor);
+
+        db.update(ControleContract.FechaVendaEntry.TABLE_NAME,valores,where,null);
+        db.close();
+    }
+    public void cancelarVenda(int numvenda){
+        ContentValues valores;
+        String where;
+        db = banco.getWritableDatabase();
+        where = ControleContract.FechaVendaEntry.NUMEROVENDA + "=" + numvenda;
+        valores = new ContentValues();
+        valores.put(ControleContract.FechaVendaEntry.CANCELADA,1);
 
         db.update(ControleContract.FechaVendaEntry.TABLE_NAME,valores,where,null);
         db.close();

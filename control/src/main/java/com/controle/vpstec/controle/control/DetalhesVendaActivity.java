@@ -15,12 +15,13 @@ import com.controle.vpstec.controle.control.db.BancoController;
 import com.controle.vpstec.controle.control.db.ControleContract;
 
 public class DetalhesVendaActivity extends AppCompatActivity {
+    BancoController bd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_venda);
-        int numerovenda = Integer.parseInt(this.getIntent().getStringExtra("numerovenda"));
+        final int numerovenda = Integer.parseInt(this.getIntent().getStringExtra("numerovenda"));
         ListView listavenda = (ListView)findViewById(R.id.listview_detalhes_venda);
         BancoController crud = new BancoController(getBaseContext());
         final Cursor cursor = crud.buscarVendas(numerovenda);
@@ -56,6 +57,28 @@ public class DetalhesVendaActivity extends AppCompatActivity {
             }
         });
         Button cancelar = (Button)findViewById(R.id.bt_excluir_venda);
+        cancelar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                bd = new BancoController(getBaseContext());
+                Cursor vendas = bd.buscarVendas(numerovenda);
+                vendas.moveToFirst();
+                do {
+                    int codigoproduto =  Integer.parseInt(vendas.getString(vendas.getColumnIndexOrThrow(ControleContract.VendaEntry.CODPROD)));
+                    int quantidade = Integer.parseInt(vendas.getString(vendas.getColumnIndexOrThrow(ControleContract.VendaEntry.QUANTIDADE_VENDA)));
+                    Cursor produto = bd.carregarPorcodigo(codigoproduto);
+                    bd.alterarRegistro(Integer.parseInt(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry._ID))),
+                            produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.DESCRICAO)),
+                            codigoproduto,
+                            Double.parseDouble(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.VALOR))),
+                            (Integer.parseInt(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.QUANTIDADE))) + quantidade),
+                            Double.parseDouble(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.CUSTO))));
+                }while(vendas.moveToNext());
+                bd.cancelarVenda(numerovenda);
+                Intent intent = new Intent(getBaseContext(),ListarVendasActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }

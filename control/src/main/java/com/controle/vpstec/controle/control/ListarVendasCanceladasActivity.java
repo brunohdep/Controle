@@ -2,11 +2,8 @@ package com.controle.vpstec.controle.control;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -15,19 +12,18 @@ import android.widget.SimpleCursorAdapter;
 import com.controle.vpstec.controle.control.db.BancoController;
 import com.controle.vpstec.controle.control.db.ControleContract;
 
-public class ListarVendasActivity extends AppCompatActivity {
+public class ListarVendasCanceladasActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listar_vendas);
+        setContentView(R.layout.activity_listar_vendas_canceladas);
         AtualizarVendas();
     }
-
     public void AtualizarVendas(){
         ListView listvendas = (ListView) findViewById(R.id.listview_listavendas);
         BancoController crud = new BancoController(getBaseContext());
-        final Cursor cursor = crud.listarVendasNaoCanceladas();
+        final Cursor cursor = crud.listarVendasCanceladas();
         String[] nomeCampos = new String[]{
                 ControleContract.FechaVendaEntry._ID,
                 ControleContract.FechaVendaEntry.DATA,
@@ -61,16 +57,15 @@ public class ListarVendasActivity extends AppCompatActivity {
 
         listvendas.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
-            public void onItemClick(AdapterView<?> parent,View view,int position, long id){
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 String numerovenda;
                 cursor.moveToPosition(position);
                 numerovenda = cursor.getString(cursor.getColumnIndexOrThrow(ControleContract.FechaVendaEntry.NUMEROVENDA));
-                Intent intent = new Intent(ListarVendasActivity.this,DetalhesVendaActivity.class);
+                Intent intent = new Intent(ListarVendasCanceladasActivity.this,DetalhesVendaActivity.class);
                 intent.putExtra("numerovenda",numerovenda);
                 startActivity(intent);
                 finish();
             }
         });
     }
-
 }
