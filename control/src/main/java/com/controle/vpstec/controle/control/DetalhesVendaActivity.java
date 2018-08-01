@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -54,6 +55,7 @@ public class DetalhesVendaActivity extends AppCompatActivity {
                 finish();
             }
         });
+        Button cancelar = (Button)findViewById(R.id.bt_excluir_venda);
     }
 
 }

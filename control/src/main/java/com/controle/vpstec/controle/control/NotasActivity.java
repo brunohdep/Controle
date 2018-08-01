@@ -41,7 +41,7 @@ public class NotasActivity extends AppCompatActivity {
                 R.id.nota_id,
                 R.id.nota_data,
                 R.id.tv_notanumvenda,
-                R.id.tv_nomecliente,
+                R.id.tv_notanomecliente,
                 R.id.nota_status,
                 R.id.tv_notadescontovenda,
                 R.id.tv_notavalorvenda};

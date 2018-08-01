@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class ControleDbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 11;
 
     static final String DATABASE_NAME = "controle.db";
 
@@ -49,7 +49,8 @@ public class ControleDbHelper extends SQLiteOpenHelper {
                         ControleContract.FechaVendaEntry.NUMEROVENDA + " INTEGER NOT NULL," +
                         ControleContract.FechaVendaEntry.DESCONTO + " REAL NOT NULL,"+
                         ControleContract.FechaVendaEntry.STATUS + " INTEGER NOT NULL," +
-                        ControleContract.FechaVendaEntry.VALOR + " REAL NOT NULL" + " )";
+                        ControleContract.FechaVendaEntry.VALOR + " REAL NOT NULL," +
+                        ControleContract.FechaVendaEntry.CANCELADA +" INTEGER NOT NULL" +" )";
         sqLiteDatabase.execSQL(SQL_CREATE_FECHAVENDA);
 
     }

@@ -1,5 +1,6 @@
 package com.controle.vpstec.controle.control;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +33,8 @@ public class CadastrarActivity extends AppCompatActivity {
 
         String result = insert.inserirProduto(p);
         Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getBaseContext(),EstoqueActivity.class);
+        startActivity(intent);
 
     }
 }

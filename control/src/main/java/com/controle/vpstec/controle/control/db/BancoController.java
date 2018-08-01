@@ -71,6 +71,7 @@ public class BancoController {
         valores.put(ControleContract.FechaVendaEntry.STATUS,status);
         valores.put(ControleContract.FechaVendaEntry.DESCONTO,desconto);
         valores.put(ControleContract.FechaVendaEntry.VALOR,valor);
+        valores.put(ControleContract.FechaVendaEntry.CANCELADA,0);
 
         resultado = db.insert(ControleContract.FechaVendaEntry.TABLE_NAME,null,valores);
         db.close();

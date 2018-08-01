@@ -26,6 +26,7 @@ public class ControleContract {
         public static final String STATUS = "status";
         public static final String DESCONTO = "desconto";
         public static final String VALOR = "valor";
+        public static final String CANCELADA = "cacenlada";
     }
 
     public static class VendaEntry implements BaseColumns{
