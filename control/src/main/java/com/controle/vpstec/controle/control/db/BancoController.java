@@ -246,6 +246,17 @@ public class BancoController {
         db.update(ControleContract.ProdutoEntry.TABLE_NAME,valores,where,null);
         db.close();
     }
+    public void alterarRegistroVenda(int numvenda,double valor){
+        ContentValues valores;
+        String where;
+        db = banco.getWritableDatabase();
+        where = ControleContract.FechaVendaEntry.NUMEROVENDA + "=" + numvenda;
+        valores = new ContentValues();
+        valores.put(ControleContract.FechaVendaEntry.VALOR,valor);
+
+        db.update(ControleContract.FechaVendaEntry.TABLE_NAME,valores,where,null);
+        db.close();
+    }
     public void receberVenda(int numvenda){
         ContentValues valores;
         String where;
@@ -266,6 +277,12 @@ public class BancoController {
 
     public void deletarRegistrodeVenda(int id){
         String where = ControleContract.VendaEntry.NUMEROVENDA + "=" + id;
+        db = banco.getReadableDatabase();
+        db.delete(ControleContract.VendaEntry.TABLE_NAME,where,null);
+        db.close();
+    }
+    public void deletarRegistrodeVendaporid(int id){
+        String where = ControleContract.VendaEntry._ID + "=" + id;
         db = banco.getReadableDatabase();
         db.delete(ControleContract.VendaEntry.TABLE_NAME,where,null);
         db.close();
@@ -327,7 +344,30 @@ public class BancoController {
         db.close();
         return cursor;
     }
-    public boolean verificarEstoque(int quantidade){
-
+    public Cursor buscarVendasPoridFull(int id){
+        Cursor cursor;
+        String[] campos = {
+                ControleContract.VendaEntry._ID,
+                ControleContract.VendaEntry.NUMEROVENDA,
+                ControleContract.VendaEntry.CODPROD,
+                ControleContract.VendaEntry.QUANTIDADE_VENDA,
+                ControleContract.VendaEntry.DESCRICAO,
+                ControleContract.VendaEntry.PRECO};
+        String where = ControleContract.VendaEntry._ID + "=" + id;
+        db=banco.getReadableDatabase();
+        cursor = db.query(ControleContract.VendaEntry.TABLE_NAME,campos,where,null,null,null,null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        db.close();
+        return cursor;
+    }
+    public boolean verificarEstoque(int quantidade,int codigo){
+        Cursor cursor = carregarPorcodigo(codigo);
+        if(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(ControleContract.ProdutoEntry.QUANTIDADE)))>=quantidade){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
