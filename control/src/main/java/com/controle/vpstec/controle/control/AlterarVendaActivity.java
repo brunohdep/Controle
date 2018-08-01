@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.controle.vpstec.controle.control.db.BancoController;
 import com.controle.vpstec.controle.control.db.ControleContract;
@@ -40,24 +41,29 @@ public class AlterarVendaActivity extends AppCompatActivity {
         remover.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                int idvenda = Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(ControleContract.VendaEntry._ID)));
-                int quantidade = Integer.parseInt(qtd.getText().toString());
-                int codigoproduto = Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(ControleContract.VendaEntry.CODPROD)));
-                Cursor produto = bd.carregarPorcodigo(codigoproduto);
-                Cursor venda = bd.listarVendaPorNumerodaVenda(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(ControleContract.FechaVendaEntry.NUMEROVENDA))));
-                bd.alterarRegistro(Integer.parseInt(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry._ID))),
-                        produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.DESCRICAO)),
-                        codigoproduto,
-                        Double.parseDouble(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.VALOR))),
-                        (Integer.parseInt(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.QUANTIDADE)))+quantidade),
-                        Double.parseDouble(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.CUSTO))));
-                System.out.println("Valor Venda : ");
-                double valorvenda = Double.parseDouble(venda.getString(venda.getColumnIndexOrThrow(ControleContract.FechaVendaEntry.VALOR)));
-                double valorprod = Double.parseDouble(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.VALOR)));
-                bd.alterarRegistroVenda(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(ControleContract.VendaEntry.NUMEROVENDA))),valorvenda-(quantidade*valorprod));
-                bd.deletarRegistrodeVendaporid(idvenda);
-                Intent intent = new Intent(getBaseContext(),ListarVendasActivity.class);
-                startActivity(intent);
+                int numvenda = bd.contarVendasItens(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(ControleContract.VendaEntry.NUMEROVENDA))));
+                if(numvenda>1) {
+                    int idvenda = Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(ControleContract.VendaEntry._ID)));
+                    int quantidade = Integer.parseInt(qtd.getText().toString());
+                    int codigoproduto = Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(ControleContract.VendaEntry.CODPROD)));
+                    Cursor produto = bd.carregarPorcodigo(codigoproduto);
+                    Cursor venda = bd.listarVendaPorNumerodaVenda(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(ControleContract.FechaVendaEntry.NUMEROVENDA))));
+                    bd.alterarRegistro(Integer.parseInt(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry._ID))),
+                            produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.DESCRICAO)),
+                            codigoproduto,
+                            Double.parseDouble(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.VALOR))),
+                            (Integer.parseInt(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.QUANTIDADE))) + quantidade),
+                            Double.parseDouble(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.CUSTO))));
+                    System.out.println("Valor Venda : ");
+                    double valorvenda = Double.parseDouble(venda.getString(venda.getColumnIndexOrThrow(ControleContract.FechaVendaEntry.VALOR)));
+                    double valorprod = Double.parseDouble(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.VALOR)));
+                    bd.alterarRegistroVenda(Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(ControleContract.VendaEntry.NUMEROVENDA))), valorvenda - (quantidade * valorprod));
+                    bd.deletarRegistrodeVendaporid(idvenda);
+                    Intent intent = new Intent(getBaseContext(), ListarVendasActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(),"A venda contem apenas um item, Tente deletar a venda",Toast.LENGTH_LONG).show();
+                }
 
 
             }

@@ -309,6 +309,23 @@ public class BancoController {
         db.close();
         return numvendas;
     }
+    public int contarVendasItens(int numerovenda){
+        int numvendas = -1;
+        db = banco.getReadableDatabase();
+        String where = String.valueOf(numerovenda);
+        try {
+            Cursor cursor = db.rawQuery("Select count(*) from venda where numerovenda = ? ", new String[]{where});
+            cursor.moveToFirst();
+            if(cursor!= null){
+                numvendas =cursor.getInt(0);
+            }
+        }catch (Exception e){
+            System.out.println(e);
+            numvendas = 1;
+        }
+        db.close();
+        return numvendas;
+    }
 
     public Cursor buscarVendas(int numerovenda){
         Cursor cursor;
