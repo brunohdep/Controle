@@ -57,7 +57,7 @@ public class FluxoCaixaActivity extends AppCompatActivity {
     public void Atualizar() {
         ListView listView = (ListView) findViewById(R.id.listview_venda);
         BancoController crud = new BancoController(getBaseContext());
-        final Cursor cursor = crud.listarVendas();
+        final Cursor cursor = crud.listarVendasNaoCanceladas();
         String[] campos = {
                 ControleContract.FechaVendaEntry._ID,
                 ControleContract.FechaVendaEntry.DATA,

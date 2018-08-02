@@ -40,4 +40,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getBaseContext(),NotasActivity.class);
         startActivity(intent);
     }
+    public void mostrarCenceladas(View view){
+        Intent intent = new Intent(getBaseContext(),ListarVendasCanceladasActivity.class);
+        startActivity(intent);
+    }
 }

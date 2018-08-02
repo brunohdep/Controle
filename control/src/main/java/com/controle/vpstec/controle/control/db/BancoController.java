@@ -154,6 +154,7 @@ public class BancoController {
         String where = ControleContract.FechaVendaEntry.STATUS + " = " + 1 + " and " + ControleContract.FechaVendaEntry.CANCELADA + " = " + 0 ;
         db = banco.getReadableDatabase();
         cursor = db.query(ControleContract.FechaVendaEntry.TABLE_NAME,campos,where,null,null,null,null,null);
+        cursor.moveToFirst();
         return cursor;
     }
     public Cursor listarVendasCanceladas(){

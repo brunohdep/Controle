@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -37,6 +38,61 @@ public class AlterarActivity extends AppCompatActivity {
         descricao = (TextView) findViewById(R.id.alt_desc);
         quantidade = (TextView) findViewById(R.id.alt_quant);
         custo = (TextView) findViewById(R.id.alt_custo);
+        cod.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+                    cod.setText("");
+                }
+                return false;
+            }
+        });
+        valor.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+                    valor.setText("");
+                }
+                return false;
+            }
+        });
+        descricao.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+                    descricao.setText("");
+                }
+                return false;
+            }
+        });
+        quantidade.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+                    quantidade.setText("");
+                }
+                return false;
+            }
+        });
+        custo.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+                    custo.setText("");
+                }
+                return false;
+            }
+        });
 
         alterar = (Button) findViewById(R.id.bt_alt_prod);
         deletar = (Button)findViewById(R.id.bt_deletar);

@@ -21,7 +21,7 @@ public class ListarVendasCanceladasActivity extends AppCompatActivity {
         AtualizarVendas();
     }
     public void AtualizarVendas(){
-        ListView listvendas = (ListView) findViewById(R.id.listview_listavendas);
+        ListView listvendas = (ListView) findViewById(R.id.listview_listavendascanceladas);
         BancoController crud = new BancoController(getBaseContext());
         final Cursor cursor = crud.listarVendasCanceladas();
         String[] nomeCampos = new String[]{
@@ -61,7 +61,7 @@ public class ListarVendasCanceladasActivity extends AppCompatActivity {
                 String numerovenda;
                 cursor.moveToPosition(position);
                 numerovenda = cursor.getString(cursor.getColumnIndexOrThrow(ControleContract.FechaVendaEntry.NUMEROVENDA));
-                Intent intent = new Intent(ListarVendasCanceladasActivity.this,DetalhesVendaActivity.class);
+                Intent intent = new Intent(ListarVendasCanceladasActivity.this,DetalhesVendasCanceladas.class);
                 intent.putExtra("numerovenda",numerovenda);
                 startActivity(intent);
                 finish();
