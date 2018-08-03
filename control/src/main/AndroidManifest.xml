@@ -3,7 +3,8 @@
     package="com.controle.vpstec.controle.control">
 
     <application>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:theme="@style/Controls">
             <intent-filter android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -216,7 +217,8 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProdutosVenda">
+        <activity android:name=".ProdutosVenda"
+            android:label="Detalhes">
             <intent-filter android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -229,7 +231,8 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
-        <activity android:name=".AdicionarProdutoVendaActivity">
+        <activity android:name=".AdicionarProdutoVendaActivity"
+            android:label="Adicionar Produto">
             <intent-filter android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -242,7 +245,8 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
-        <activity android:name=".AlterarVendaActivity">
+        <activity android:name=".AlterarVendaActivity"
+            android:label="Remover Produto">
             <intent-filter android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -255,7 +259,8 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
-        <activity android:name=".ListarVendasCanceladasActivity">
+        <activity android:name=".ListarVendasCanceladasActivity"
+            android:label="Vendas Canceladas">
             <intent-filter android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -268,33 +273,8 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetalhesVendasCanceladas">
-            <intent-filter android:order="1">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="vpstec.controle.com"
-                    android:pathPattern="/.*"
-                    android:scheme="https" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".Main2Activity">
-            <intent-filter android:order="1">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="ItemVendaCanceladaActivity"
-                    android:pathPattern="/.*"
-                    android:scheme="https" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".AlterarVendasCanceladasActivity">
+        <activity android:name=".DetalhesVendasCanceladas"
+            android:label="Detalhes">
             <intent-filter android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 
