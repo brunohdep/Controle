@@ -5,7 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="100dp">
     <TextView
-        android:id="@+id/p_id_num"
+        android:id="@+id/p_id_pvenda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/p_custo_pvenda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
@@ -21,20 +27,20 @@
             android:layout_marginEnd="4dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="Descrição:"
+            android:text="Cliente:"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/p_descricao_nome"
+            app:layout_constraintEnd_toStartOf="@+id/p_descricao_pvenda"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/p_descricao_nome"
+            android:id="@+id/p_descricao_pvenda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
-            android:text="Camisa Polo"
+            android:text="Pedro Paulo da Silva"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView7"
             app:layout_constraintTop_toTopOf="parent" />
@@ -51,7 +57,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <TextView
-            android:id="@+id/p_codigo_num"
+            android:id="@+id/p_codigo_pvenda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -59,7 +65,7 @@
             android:text="537"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView18"
-            app:layout_constraintTop_toBottomOf="@+id/p_descricao_nome" />
+            app:layout_constraintTop_toBottomOf="@+id/p_descricao_pvenda" />
 
         <TextView
             android:id="@+id/textView20"
@@ -69,11 +75,11 @@
             android:layout_marginTop="4dp"
             android:text="Valor R$:"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/p_codigo_num"
-            app:layout_constraintTop_toBottomOf="@+id/p_descricao_nome" />
+            app:layout_constraintStart_toEndOf="@+id/p_codigo_pvenda"
+            app:layout_constraintTop_toBottomOf="@+id/p_descricao_pvenda" />
 
         <TextView
-            android:id="@+id/p_valor_num"
+            android:id="@+id/p_valor_pvenda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -81,7 +87,7 @@
             android:text="10,85"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView20"
-            app:layout_constraintTop_toBottomOf="@+id/p_descricao_nome" />
+            app:layout_constraintTop_toBottomOf="@+id/p_descricao_pvenda" />
 
         <TextView
             android:id="@+id/textView22"
@@ -97,7 +103,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
         <TextView
-            android:id="@+id/p_quantidade_num"
+            android:id="@+id/p_quantidade_pvenda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -107,7 +113,7 @@
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView22"
-            app:layout_constraintTop_toBottomOf="@+id/p_codigo_num" />
+            app:layout_constraintTop_toBottomOf="@+id/p_codigo_pvenda" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

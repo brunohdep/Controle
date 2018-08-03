@@ -30,7 +30,8 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/cardview">
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -73,7 +74,8 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/cardview">
 
             <ImageView
                 android:id="@+id/imageView6"
@@ -117,7 +119,8 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/cardview">
 
             <ImageView
                 android:id="@+id/imageView8"
@@ -159,7 +162,8 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/cardview">
 
             <ImageView
                 android:id="@+id/imageView9"
@@ -200,7 +204,8 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/cardview">
 
             <ImageView
                 android:id="@+id/imageView10"
@@ -242,7 +247,8 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/cardview">
 
             <ImageView
                 android:id="@+id/imageView12"
