@@ -16,74 +16,67 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/colorPrimary"
         android:layout_weight="0.01">
-        <TextView
-            android:id="@+id/tv_venda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Venda:" />
-        <TextView
-            android:id="@+id/tv_venda_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="" />
 
-        <!--<TextView-->
-            <!--android:id="@+id/tv_quantidade"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="  Quantidade:" />-->
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <!--<EditText-->
-            <!--android:id="@+id/tv_quantidade_num"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text=""-->
-            <!--android:inputType="number" />-->
+
+            <TextView
+                android:id="@+id/tv_venda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="N°Venda:"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_venda_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="coxinha"
+                android:textSize="18sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_venda"
+                app:layout_constraintStart_toEndOf="@+id/tv_venda" />
+
+            <TextView
+                android:id="@+id/tv_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Total R$:"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_venda" />
+
+            <TextView
+                android:id="@+id/total_valor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="25639"
+                android:textSize="18sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_total"
+                app:layout_constraintStart_toEndOf="@+id/tv_total" />
+
+        </android.support.constraint.ConstraintLayout>
 
     </LinearLayout>
 
-    <!--<AutoCompleteTextView-->
-        <!--android:id="@+id/tv_produto"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content" />-->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tv_total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Total R$:" />
-
-        <TextView
-            android:id="@+id/total_valor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="" />
-
-    </LinearLayout>
-
-
-    <!--<Button-->
-        <!--android:id="@+id/bt_adicionar_prod"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_weight="0"-->
-        <!--android:text="Adicionar Produto"-->
-        <!--/>-->
     <Button
         android:id="@+id/bt_adicionar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:text="Adicionar Produto"
-        />
+        android:text="Adicionar Produto" />
     <Button
         android:id="@+id/bt_cancelar_venda"
         android:layout_width="match_parent"
@@ -97,7 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:text="Fechar Venda"
-         />
+        />
 
 
 

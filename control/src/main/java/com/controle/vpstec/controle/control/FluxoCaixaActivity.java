@@ -22,9 +22,9 @@ public class FluxoCaixaActivity extends AppCompatActivity {
         Atualizar();
         fluxo();
         TextView total = (TextView) findViewById(R.id.edt_total);
-        total.setText(String.valueOf(valor));
+        total.setText(String.format("%.2f",valor));
         TextView lucrotv = (TextView) findViewById(R.id.edt_lucro);
-        lucrotv.setText(String.valueOf(lucro));
+        lucrotv.setText(String.format("%.2f",lucro));
 
     }
 

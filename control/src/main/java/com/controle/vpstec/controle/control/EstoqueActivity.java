@@ -48,10 +48,10 @@ public class EstoqueActivity extends AppCompatActivity {
             Cadastrar();
             return true;
         }
-        if(id == R.id.menu_atualizar){
-            Atualizar();
-            return true;
-        }
+//        if(id == R.id.menu_atualizar){
+//            Atualizar();
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }

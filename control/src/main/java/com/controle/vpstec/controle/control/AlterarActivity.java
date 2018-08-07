@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -94,7 +93,7 @@ public class AlterarActivity extends AppCompatActivity {
             }
         });
 
-        alterar = (Button) findViewById(R.id.bt_alt_prod);
+        alterar = (Button) findViewById(R.id.bt_receber);
         deletar = (Button)findViewById(R.id.bt_deletar);
 
         cursor = crud.carregarDadoById(Integer.parseInt(codigo));

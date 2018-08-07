@@ -38,13 +38,24 @@ public class FinalizarVendaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_finalizar_venda);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        valor = Double.valueOf(bundle.getString("valor"));
+        valor = Double.parseDouble(String.valueOf(bundle.getString("valor")).replace(",","."));
         TextView valortotal = (TextView) findViewById(R.id.valor_total);
         valortotal.setText("RS: "+bundle.getString("valor"));
         Button finalizar = (Button)findViewById(R.id.bt_finalizar);
         nome = (EditText)findViewById(R.id.cliente_nome);
         desconto = (EditText)findViewById(R.id.valor_desconto);
         status = (Switch)findViewById(R.id.status);
+        nome.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+                    nome.setText("");
+                }
+                return false;
+            }
+        });
         desconto.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -98,10 +109,10 @@ public class FinalizarVendaActivity extends AppCompatActivity {
                     inserir.alterarRegistro(Integer.parseInt(produtos.getString(produtos.getColumnIndexOrThrow("_id"))),
                             produtos.getString(produtos.getColumnIndexOrThrow("descricao")),
                             Integer.parseInt(produtos.getString(produtos.getColumnIndexOrThrow("cod"))),
-                            Double.parseDouble(produtos.getString(produtos.getColumnIndexOrThrow("valor"))),
+                            Double.parseDouble(String.format("%.2f",Double.parseDouble(produtos.getString(produtos.getColumnIndexOrThrow("valor")))).replace(",",".")),
                             (Integer.parseInt(produtos.getString(produtos.getColumnIndexOrThrow("quantidade")))-Integer.parseInt(produtosvenda.getString(produtosvenda.getColumnIndexOrThrow("quantidadevenda")))),
-                            Double.parseDouble(produtos.getString(produtos.getColumnIndexOrThrow("custo")))
-                            );
+                            Double.parseDouble(String.format("%.2f",Double.parseDouble(produtos.getString(produtos.getColumnIndexOrThrow("custo")))).replace(",",".")
+                            ));
                 }while(produtosvenda.moveToNext());
                 String result = inserir.inserirFinalizarVenda(data,
                         numero(getBaseContext()),

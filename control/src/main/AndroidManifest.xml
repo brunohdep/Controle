@@ -4,7 +4,8 @@
 
     <application>
         <activity android:name=".MainActivity"
-            android:theme="@style/Controls">
+            android:theme="@style/Controls"
+            android:label="Charmosa">
             <intent-filter android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -260,7 +261,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ListarVendasCanceladasActivity"
-            android:label="Vendas Canceladas">
+            android:label="Vendas Canceladas"
+            android:parentActivityName=".MainActivity">
             <intent-filter android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -272,6 +274,9 @@
                     android:pathPattern="/.*"
                     android:scheme="https" />
             </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
         <activity android:name=".DetalhesVendasCanceladas"
             android:label="Detalhes">

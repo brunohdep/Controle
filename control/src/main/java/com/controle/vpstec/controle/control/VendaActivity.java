@@ -59,7 +59,7 @@ public class VendaActivity extends AppCompatActivity {
             tvnumvenda.setText(String.valueOf(numeroVenda));
         }
         totaltv = (TextView) findViewById(R.id.total_valor);
-        totaltv.setText(String.valueOf(total));
+        totaltv.setText(String.format("%.2f",total));
 //        Button adicionar = (Button) findViewById(R.id.bt_adicionar_prod);
         Button cancelar = (Button)findViewById(R.id.bt_cancelar_venda);
         cancelar.setOnClickListener(new View.OnClickListener(){
@@ -105,7 +105,7 @@ public class VendaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(),FinalizarVendaActivity.class);
-                String valor = String.valueOf(total);
+                String valor = String.format("%.2f",total);
                 Bundle bundle = new Bundle();
                 bundle.putString("valor",valor);
                 intent.putExtras(bundle);
@@ -148,7 +148,7 @@ public class VendaActivity extends AppCompatActivity {
                 System.out.println("Atual1 : " + total);
                 while (cursor.moveToNext()) {
                     double preco = 0.00;
-                    preco = Double.parseDouble(cursor.getString(cursor.getColumnIndexOrThrow("preco")));
+                    preco = Double.parseDouble(String.format("%.2f",Double.parseDouble(cursor.getString(cursor.getColumnIndexOrThrow("preco")))).replace(",","."));
                     System.out.println("Preco:" + preco);
                     if (preco != 0) {
                         System.out.println("ID" + cursor.getString(cursor.getColumnIndexOrThrow("_id")));

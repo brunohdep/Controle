@@ -70,9 +70,9 @@ public class DetalhesVendaActivity extends AppCompatActivity {
                     bd.alterarRegistro(Integer.parseInt(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry._ID))),
                             produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.DESCRICAO)),
                             codigoproduto,
-                            Double.parseDouble(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.VALOR))),
+                            Double.parseDouble(String.format("%.2f",Double.parseDouble(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.VALOR)))).replace(",",".")),
                             (Integer.parseInt(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.QUANTIDADE))) + quantidade),
-                            Double.parseDouble(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.CUSTO))));
+                            Double.parseDouble(String.format("%.2f",Double.parseDouble(produto.getString(produto.getColumnIndexOrThrow(ControleContract.ProdutoEntry.CUSTO)))).replace(",",".")));
                 }while(vendas.moveToNext());
                 bd.cancelarVenda(numerovenda);
                 Intent intent = new Intent(getBaseContext(),ListarVendasActivity.class);
